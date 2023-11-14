@@ -1,0 +1,32 @@
+import numpy as np
+
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+def gaussian(x, a, b, c):
+    return a * np.exp(-b * (x-c)**2)
+
+def noisy_gaussian():
+    # gaussian array y in interval -5 <= x <= 5
+    nx = 100
+    x = np.linspace(-5.0, 5.0, nx)
+    y = gaussian(x, a=2.0, b=0.5, c=1.5)
+    noise = np.random.normal(0.0, 0.2, nx)
+    y += noise
+    return x, y
+
+def fit(x, y, n):
+    pfit = np.polyfit(x, y, n)
+    yfit = np.polyval(pfit, x)
+    return yfit
+
+def plot(x, y, yfit):
+    plt.plot(x, y, "r", label="Data")
+    plt.plot(x, yfit, "b", label="Fit")
+    plt.legend()
+    plt.ylim(-0.5, 2.5)
+    plt.show()
+
+x, y = noisy_gaussian()
+yfit = fit(x, y, n=5)  # fit a 5th order polynomial to it
+plot(x, y, yfit)

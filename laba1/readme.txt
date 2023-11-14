@@ -1,0 +1,1 @@
+ссылка на более менне сделаную лабу но в другом репозитории - https://github.com/TuchkaSoul/program-python-Jupyter-Lab.git
